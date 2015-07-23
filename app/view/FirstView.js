@@ -23,7 +23,7 @@ Ext.define('findAll.view.FirstView', {
 							id:'productImage',
 							width:'40%',
 							height:'80',
-							src:'resources/images/productImage.jpeg',
+							src:'resources/images/vips.jpg',
 						},
 						{
 							layout:'vbox',
@@ -55,21 +55,21 @@ Ext.define('findAll.view.FirstView', {
 			{	
 				xtype:'textfield',
 				id:'productName',
-				name:'productname',
+				name:'productName',
 				margin:'3% 0 0 0',
 				placeHolder:'Product Name'
 			},
 			{	
 				xtype:'textfield',
 				id:'companyName',
-				name:'companyname',
+				name:'companyName',
 				margin:'3% 0 0 0',
 				placeHolder:'Company Name'
 			},
 			{
 				xtype:'textfield',
-				id:'modelNumber',
-				name:'modelnumber',
+				id:'model',
+				name:'model',
 				margin:'3% 0 0 0',
 				placeHolder:'Model'
 			},
