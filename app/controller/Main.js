@@ -4,10 +4,13 @@ function getData(){
 	
 	console.log('we are in getData method');
 
+	//var data= [ {"productId","151"},{"productName","bike245"} ];
+	var data = { products: [ {"productId":"101},{"productName":"BikePart"}]};
+
 	Ext.Ajax.request({
 		method: 'POST',
 		params: { 'contentType':'json' },
-		jsonData: {"product_id":"101"},
+		params: data, 
 		url: server_url,
 		
 		
@@ -22,12 +25,17 @@ function getData(){
 				alert("Ajax Call Success");	
 				var res = response.responseText;
 				console.log(res);
-				/*
-				var resultData = JSON.parse(res);
-				console.dir(resultData);
-				 */
+				
+				//var resultData = JSON.parse(res);
+				//console.dir(resultData);
+				
 		}
 	});
+
+
+ 
+
+ 
 
 	
 	
