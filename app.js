@@ -25,10 +25,10 @@ Ext.application({
 		'Main'
 	],
 	models:[
-		'PersonalDetailsModel'
+		'ProductDetailsModel'
 	],
 	stores:[
-		'PersonalDetailsStore'
+		'ProductDetailsStore'
 	],
     icon: {
         '57': 'resources/icons/Icon.png',

@@ -1,45 +1,55 @@
-var server_url = 'http://spj123.96.lt/insert.php';
+var server_url = 'http://spj123.96.lt/';
 
-function getData(){
+
+function uploadData(jsonData){
+	var resultData;
 	
-	console.log('we are in getData method');
-
-	//var data= [ {"productId","151"},{"productName","bike245"} ];
-	var data = { products: [ {"productId":"101},{"productName":"BikePart"}]};
-
 	Ext.Ajax.request({
 		method: 'POST',
 		params: { 'contentType':'json' },
-		params: data, 
-		url: server_url,
-		
-		
+		params: jsonData, 
+		url: server_url + "insert.php",
 		failure: function(response) 
 		{
-				alert("Ajax Call Failure");
-			
+				console.log("Ajax Call Failure");
 		},
 		success: function(response, opts) 
 		{
 		
-				alert("Ajax Call Success");	
-				var res = response.responseText;
-				console.log(res);
-				
-				//var resultData = JSON.parse(res);
-				//console.dir(resultData);
+			console.log("Ajax Call Success");	
+			resultData = response.responseText;
+			console.log(resultData);
 				
 		}
 	});
-
-
- 
-
- 
-
-	
-	
+	return resultData;
 }
+
+
+function downloadData(){
+	var resultData;
+	
+	Ext.Ajax.request({
+		method: 'POST',
+		params: { 'contentType':'json' },
+		url: server_url + "default.php",
+		failure: function(response) 
+		{
+				alert("Ajax Call Failure");
+		},
+		success: function(response, opts) 
+		{
+		
+			alert("Ajax Call Success");	
+			resultData = response.responseText;
+			console.log(resultData);
+				
+		}
+	});
+	return resultData;
+}
+
+
 
 Ext.define('findAll.controller.Main', {
     extend: 'Ext.app.Controller',
@@ -61,9 +71,23 @@ Ext.define('findAll.controller.Main', {
 		
 	},
 	onSubmitClicked:function(button){
-		Ext.Msg.alert('','We are on onSubmitClicked method');	
-		getData();
-		console.log('getData method is executed');
-}
+		//Ext.Msg.alert('','onSubmitClicked');	
+		
+		 var jsonData = 
+				{
+						"product_id":"151",
+						"product_name":"BIKE"
+						
+				};	 
+		//var resultData = uploadData(jsonData);
+		var resultData = downloadData();
+		
+		console.log("ResultData");
+		console.dir(resultData);
+		var ProductDetailsStore = Ext.getStore('productDetailStore');
+		ProductDetailsStore.setData(jsonData);
+		console.log("GeCOunt = " + ProductDetailsStore.getCount());
+		
+	}
 	
 });
